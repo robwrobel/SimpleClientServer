@@ -1,6 +1,7 @@
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import org.json.JSONObject;
 
 public class Server {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
@@ -13,7 +14,7 @@ public class Server {
         InputStream is = socket.getInputStream();
         ObjectInputStream ois = new ObjectInputStream(is);
 
-        String string = "";
+        String string;
 /*
         String fromServer = "Message From Server";
         oos.writeObject(fromServer);*/
@@ -22,16 +23,14 @@ public class Server {
 
         string = (String) ois.readObject();
 
+        JSONObject object = new JSONObject(string);
+
+        if (object.get("method").equals("simple_text")) {
+            object.get("")
+        }
 
 
-        System.out.println(string);
-
-
-        string = (String) ois.readObject();
-
-
-
-        System.out.println(string);
+        System.out.println(object);
 
     }
 }
